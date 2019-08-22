@@ -1,0 +1,295 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+
+html {height: 100%}
+
+
+body {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	color: #333;
+	font-family: "Segoe UI", Arial, sans-serif;
+	font-size: 1em;
+	line-height: 135%;
+	float: left;
+}
+
+a{
+	color: #d38484;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #efdea0;
+}
+
+a, a:hover {
+	-webkit-transition: all.6s ease;
+	-moz-transition: all.6s ease;
+	-o-transition: all.6s ease;
+	-ms-transition: all.6s ease;
+	transition: all.6s ease;
+}
+
+.clear {
+	clear: both;
+}
+
+/*Cтили для шапки*/
+
+header {
+	width: 98%;
+	float: left;
+	padding: 1%;
+	background-color: #f0f0f0;
+	border-bottom: 2px solid silver;
+	margin-bottom: 20px;
+}
+
+header #logo {
+	width: 40%;
+	float: left;
+}
+
+header #logo a {
+	color: #000000;
+	font-size: 2em;
+	font-family: Times New Roman, sans-serif;
+}
+
+header #menuHead {
+	width: 24%;
+	float: left;
+}
+
+header #menuHead div {
+	float: left;
+	font-size: 1.1em;
+	padding: 5px;
+	background-color: #afafaf;
+	border-radius: 5px;
+	color: #ffffff;
+}
+
+header #menuHead div:hover {
+	background-color: #e7e7e7;
+}
+
+header #regAuth {
+	width: 30%;
+	float: left;
+	text-align: right;
+	font-size: 1.1em;
+	}
+/*Стили для всего документа*/
+
+#wrapper {
+	width: 90%;
+	margin-left: 5%;
+	float: left;
+}
+
+#wrapper #bigArticle {
+	width: 88%;
+	margin-left: 5%;
+	background-color: #afafaf;
+	padding: 1%;
+	border-radius: 5px;
+	color: #ffffff;
+	float: left;
+}
+
+#wrapper #bigArticle img, #wrapper .article img {
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+#wrapper #bigArticle h2 {
+	font-weight: normal;
+	font-size: 1.3em;
+	color: #ffffff;
+	margin-bottom: 10px;
+	font-family: Arial, sans-serif;
+}
+
+#wrapper #bigArticle p, #wrapper .article p {
+	width: 90%;
+	margin-left: 5%;
+}
+
+ #wrapper #bigArticle div.more, #wrapper .article div.more {
+	padding: 5px;
+	border-radius: 5px;
+	background-color: #878787;
+	color: #ffffff;
+	width: 8%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+#wrapper #bigArticle div.more:hover, #wrapper .article div.more:hover {
+	background-color: #a2a2a2;
+}
+
+#wrapper .article {
+	width: 40%;
+	margin-left: 5%;
+	background-color: #afafaf;
+	padding: 1%;
+	border-radius: 5px;
+	color: #ffffff;
+	float: left;
+}
+
+#wrapper .article div.more{
+	width: 15%;
+}
+
+#wrapper .article h2, #wrapper .article h3 {
+	font-weight: normal;
+	font-size: 1.2em;
+	color: #ffffff;
+	margin-bottom: 10px;
+}
+
+#wrapper input {
+	width: 40%;
+	margin-left: 30%;
+	float: left;
+	border-radius: 5px;
+	border: 2px solid silver;
+	padding: 5px;
+	color: #000000;
+	margin-bottom: 10px;
+	font-size: 1.2em;
+}
+
+#wrapper input:focus, #wrapper textarea:focus {
+	border: 2px solid #f78080;
+}
+
+#wrapper input#done:hover {
+	border: 2px solid #f8d881;
+	cursor: pointer;
+}
+
+#wrapper textarea {
+	width: 50%;
+	height: 150px;
+	margin-left: 25%;
+	float: left;0
+	border-radius: 5px;
+	border: 2px solid silver;
+	padding: 5px;
+	color: #afebf0;
+	margin-bottom: 10px;
+	font-size: 1.2em;
+	resize: none;
+}
+
+#wrapper #messageShow {
+	font-size: 1.2em;
+	float: left;
+	color: red;
+	width: 100%;
+	text-align: center;
+}
+/*Стили для страниц регистрации и авторизации*/
+
+#wrapper #mlogin form {
+	font-weight: normal;
+	font-size: 1.2em;
+	color: #afafaf;
+	margin-bottom: 10px;
+}
+
+#wrapper #mlogin input {
+	width: 30%;
+	margin-left: 35%;
+	float: left;
+	border-radius: 5px;
+	border: 2px solid silver;
+	padding: 5px;
+	color: #000000;
+	margin-bottom: 10px;
+	font-size: 1.2em;
+}
+
+#wrapper #mlogin label{
+	width: 30%;
+	margin-left: 35%;
+	float: left;
+}
+#wrapper #mlogin  h1 {
+	color: #afafaf;
+	text-align: center;
+	font-weight: 300;
+   margin-top: 13px;
+   margin-bottom: 20px;
+}
+
+#wrapper #mlogin .regtext{
+	width: 30%;
+	margin-left: 35%;
+	float: left;
+}
+#wrapper #mlogin input:focus, #wrapper textarea:focus {
+	border: 2px solid #f78080;
+}
+
+#wrapper #mlogin input#done:hover {
+	border: 2px solid #f8d881;
+	cursor: pointer;
+}
+
+
+/*Стили для страницы О нас*/
+
+#wrapper #about {
+	width: 76%;
+	margin-left: 10%;
+	border: 1px solid silver;
+	border-radius: 5px;
+	background-color: #f4f4f4;
+	padding: 2%;
+}
+	
+/*Стили для подвала*/
+
+footer {
+	width: 98%;
+	float: left;
+	padding: 1%;
+	background-color: #fafafa;
+	border-top: 2px solid silver;
+	margin-top: 10px;
+}
+
+footer #social {
+	float: left;
+	width: 50%;
+}
+
+footer #social a {
+	float: left;
+	margin-right: 5px;
+}
+
+footer #social img {
+	width: 30px;
+	height: 30px;
+}
+
+footer #rights {
+	float: right;
+	width: 50%;
+	text-align: right;
+	font-size: 1.1em;
+}

@@ -4,36 +4,45 @@
 	if(isset($_SESSION['session_username'])){
 		header("Location: intropage.php");
 	}
+	mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 	connectDB(); 
 	global $mysqli;
 	if(isset($_POST["login"])){
 		if(!empty($_POST['username']) && !empty($_POST['password'])) {
-			$username=htmlspecialchars($_POST['username']);
-			$password=htmlspecialchars($_POST['password']);
-			$query =$mysqli->query("SELECT * FROM userlist WHERE username='".$username."'");
-			$numrows=mysqli_num_rows($query);
-			if($numrows!=0){
-				while($row=mysqli_fetch_assoc($query))
-				 {
-					$dbusername=$row['username'];
-					$dbhash=$row['hash'];
-				 }
-				  if($username == $dbusername && password_verify($password,$dbhash)){
-					// старое место расположения
-					//  session_start();
-					 $_SESSION['session_username']=$username;	 
-				 /* Перенаправление браузера */
-				   header("Location: intropage.php");
+				$username=htmlspecialchars($_POST['username']);
+				$password=htmlspecialchars($_POST['password']);
+				
+				$username = mysqli_real_escape_string($mysqli, $username);
+				$password = mysqli_real_escape_string($mysqli, $password);
+				
+				//$query = $mysqli->query("SELECT * FROM userlist WHERE username = '".$username."'");
+				
+				$sql = "SELECT * FROM userlist WHERE username = '".$username."'";
+				$res = mysqli_query($mysqli, $sql) or trigger_error(mysqli_error($mysqli)." in ". $sql);
+
+				$numrows = mysqli_num_rows($res);
+				if($numrows != 0){
+					while($row = mysqli_fetch_assoc($res))
+					 {
+						$dbusername = $row['username'];
+						$dbhash = $row['hash'];
+					 }
+					if($username == $dbusername && password_verify($password, $dbhash)){
+						$_SESSION['session_username'] = $username;						
+						/* Перенаправление браузера */
+						header("Location: intropage.php");
+					} else {
+						echo "Invalid username or password!";
 					}
-			} else {
-			//  $message = "Invalid username or password!";
-			
-			echo  "Invalid username or password!";
-		 }
+				} else { 
+					echo "Invalid username or password!";
+				}
+				mysqli_free_result($res);
 		} else {
-		$message = "All fields are required!";
+			$message = "All fields are required!";
 		}
 	}
+	mysqli_close($mysqli);
 ?>
 <!DOCKTYPE html>
 <html>

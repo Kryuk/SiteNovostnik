@@ -5,36 +5,42 @@
 	header("Location: intropage.php");
 	 exit;
 	}
+	mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 	global $mysqli;
 	connectDB();
 	if(isset($_POST["register"])){
 	if(!empty($_POST['full_name']) && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_POST['password'])) {
-		$full_name= htmlspecialchars($_POST['full_name']);
-		$email=htmlspecialchars($_POST['email']);
-		$username=htmlspecialchars($_POST['username']);
-		$password=htmlspecialchars($_POST['password']);
-		$hash = password_hash($password, PASSWORD_DEFAULT);
-		$stmt = $mysqli->prepare("SELECT * FROM userlist WHERE username=?");
-		if($stmt->execute($_POST['username'])){
-			$numrows=mysqli_num_rows($query);
-		}
-		if($numrows==0)
-		   {
-			$stmt = $mysqli->prepare("INSERT INTO userlist
-			(full_name, email, username,hash) VALUES(?, ?, ?, ?)");
-			$stmt->bind_param("ssss", $full_name, $email, $username, $hash);
-			if($stmt->execute()){
-				$message = "Account Successfully Created";
+				$full_name = htmlspecialchars($_POST['full_name']);
+				$email = htmlspecialchars($_POST['email']);
+				$username = htmlspecialchars($_POST['username']);
+				$password = htmlspecialchars($_POST['password']);
+
+				$full_name = mysqli_real_escape_string($mysqli, $full_name);
+				$email = mysqli_real_escape_string($mysqli, $email);
+				$username = mysqli_real_escape_string($mysqli, $username);
+				$password = mysqli_real_escape_string($mysqli, $password);
+				
+				$hash = password_hash($password, PASSWORD_DEFAULT);
+				$query = $mysqli->query("SELECT * FROM userlist WHERE username='".$username."'");
+				$numrows = mysqli_num_rows($query);
+				if($numrows == 0)
+				   {
+					$sql = "INSERT INTO userlist
+					(full_name, email, username,hash)
+					VALUES('$full_name','$email', '$username', '$hash')";
+					$result = $mysqli->query($sql);
+					if($result){
+						$message = "Account Successfully Created";
+					} else {
+						$message = "Failed to insert data information!";
+						}
+				} else {
+					$message = "That username already exists! Please try another one!";
+					}
 			} else {
-				$message = "Failed to insert data information!";
+				$message = "All fields are required!";
 				}
-		} else {
-			$message = "That username already exists! Please try another one!";
-			}
-	} else {
-		$message = "All fields are required!";
-		}
-	closeDB();
+			closeDB();
 	}
 ?>
 <?php if (!empty($message)) {echo "<p class=\"error\">" . "MESSAGE: ". $message . "</p>";}?>
